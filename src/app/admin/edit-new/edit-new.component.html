@@ -1,0 +1,46 @@
+<div class="content">
+  <div class="col-md-4 add-dm">
+    <h4 class="text-center">Thêm bài viết</h4>
+  </div>
+  <div class="clearfix"></div>
+  <form (ngSubmit)="onSubmit(formEditNew);" #formEditNew = "ngForm">
+    <div class="form">
+      <table class="table">
+          <tr>
+            <td><p>Title</p></td>
+            <td><input type="text" name="title" [(ngModel)] = "title" class="form-control" ></td>
+          </tr>
+          <tr>
+              <td><p>Description</p></td>
+              <td><input type="text" name="description" [(ngModel)] = "description" class="form-control"></td>
+            </tr>
+          <tr>
+            <td><p>Content</p></td>
+            <td><ckeditor
+              [(ngModel)]="contentCkeditor"
+              [ngModelOptions]="{standalone: false}"
+              [name]="name"
+              [config]="{uiColor: '#99000'}"
+              [readonly]="false"
+              debounce="500">
+            </ckeditor></td>
+          </tr>
+          <tr>
+            <td><p>Image</p></td>
+            <td><input type="file" name="image" #fileInput class="form-control" ><span>{{image}}</span><img src="./assets/img/{{image}}" /></td>
+          </tr>
+          <tr>
+            <td><p>Lựa chọn danh mục cha</p></td>
+            <td><select name="category" [(ngModel)] = "category" class="form-control">
+          <option >Lựa chọn danh mục</option>
+          <option *ngFor="let category of categories" value="{{category.title}}" [selected]="category.title == new?.category">{{category.title}}</option>
+        </select>
+        </td>
+          </tr>
+      </table>
+    </div>
+    <div class="col-md-3 form-group pull-right">
+       <input type="submit" name="ok" value="saves" class="btn btn-primary btn-block">
+    </div>
+  </form>
+</div>

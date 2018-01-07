@@ -1,0 +1,47 @@
+<div class="content">
+  <h2 class="alert alert-success col-sm-4">Danh sách bài viết</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Category</th>
+        <th>Timestamp</th>
+        <th>User</th>
+        <th>Action</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let new of news; let i = index">
+        <td>{{ i+1 }}</td>
+        <td>{{ new.title }}</td>
+        <td>{{ new.description }}</td>
+        <td>{{ new.image }}</td>
+        <td>{{ new.category }}</td>
+        <td>{{ new.timestamp }}</td>
+        <td>{{ new.user }}</td>
+        <td>
+        <a routerLink="/admin/home/editnew/{{new._id}}" class="btn btn-primary a-btn-slide-text">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <span><strong>Edit</strong></span>
+        </a>
+        </td>
+        <td>
+          <a
+          mwlConfirmationPopover
+          [popoverTitle]="popoverTitle"
+          [popoverMessage]="popoverMessage"
+          placement="left"
+          (confirm)="deleteNew(new._id)"
+          (cancel)="cancelClicked = true"  class="btn btn-primary a-btn-slide-text">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          <span><strong>Delete</strong></span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><!--end .content-->
